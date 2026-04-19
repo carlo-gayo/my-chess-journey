@@ -1,11 +1,4 @@
-// backend/server.js
-// Main entry point for the My Chess Journey Express server.
-// Run with:  npm run dev   (nodemon — auto-restarts on file save)
-//
-// Start order:
-//  1. Load .env  2. Connect MongoDB  3. Register middleware  4. Mount routes  5. Listen
-
-require('dotenv').config(); // ← MUST be first so all files can read .env
+require('dotenv').config();
 
 const express    = require('express');
 const cors       = require('cors');
@@ -17,22 +10,21 @@ const postRoutes    = require('./routes/post.routes');
 const commentRoutes = require('./routes/comment.routes');
 const adminRoutes   = require('./routes/admin.routes');
 
-
-
+// ← app must be created FIRST
 const app = express();
 
-// ── Connect to MongoDB ────────────────────────────────────────────────────
 connectDB();
 
 // ── Global Middleware ─────────────────────────────────────────────────────
-// Allow React (port 3000) to call this server (port 5000)
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://my-chess-journey.vercel.app',
+  ],
+  credentials: true,
+}));
 
-// Parse JSON request bodies
 app.use(express.json());
-
-// Serve uploaded images as public static files
-// e.g. http://localhost:5000/uploads/1719123456789-342156789.jpg
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ── API Routes ────────────────────────────────────────────────────────────
