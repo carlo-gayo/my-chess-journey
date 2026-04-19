@@ -1,0 +1,456 @@
+/* src/index.css
+   Global stylesheet — imported once in index.js.
+   All classes are available everywhere (Option A from the migration guide). */
+
+/* ─── CSS Variables (theme tokens) ─────────────────────────────────────── */
+:root {
+  --bg-primary:    #F5F5DC;
+  --bg-secondary:  #ffffff;
+  --bg-accent:     #F5F5DC;
+  --text-primary:  #2C2C2C;
+  --text-secondary:#555555;
+  --accent:        #D4AF37;
+  --walnut:        #8B4513;
+  --border:        #D4AF37;
+  --header-bg:     #2C2C2C;
+  --header-text:   #F5F5DC;
+}
+
+[data-theme="dark"] {
+  --bg-primary:    #1a1a1a;
+  --bg-secondary:  #2C2C2C;
+  --bg-accent:     #333333;
+  --text-primary:  #F5F5DC;
+  --text-secondary:#cccccc;
+  --accent:        #D4AF37;
+  --walnut:        #D4AF37;
+  --border:        #555555;
+  --header-bg:     #111111;
+  --header-text:   #F5F5DC;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--walnut);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+a:hover { color: var(--accent); }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────── */
+.site-header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.site-header h1 {
+  color: var(--accent);
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  margin-bottom: 0.3rem;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--header-text);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ─── Navigation ────────────────────────────────────────────────────────── */
+.navbar {
+  margin-top: 1rem;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar ul li a,
+.navbar ul li button.nav-link {
+  color: #F5F5DC;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li button.nav-link:hover,
+.navbar ul li a.active,
+.navbar ul li button.nav-link.active {
+  background-color: var(--accent);
+  color: #2C2C2C;
+}
+
+/* Theme toggle button */
+.theme-toggle-btn {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: #F5F5DC;
+  padding: 0.4rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.theme-toggle-btn:hover {
+  background-color: var(--accent);
+  color: #2C2C2C;
+}
+
+/* ─── Main Content ──────────────────────────────────────────────────────── */
+.main-content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--bg-secondary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* ─── Section Heading ───────────────────────────────────────────────────── */
+.section-heading {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────── */
+.site-footer {
+  background-color: #2C2C2C;
+  color: #F5F5DC;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+.site-footer p { margin: 0.4rem 0; }
+
+/* ─── Forms ─────────────────────────────────────────────────────────────── */
+.form-wrapper {
+  background-color: var(--bg-accent);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-field {
+  margin-bottom: 1.2rem;
+}
+
+.form-field label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s;
+  outline: none;
+}
+.form-input:focus { border-color: var(--walnut); }
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 3px;
+  display: block;
+  min-height: 1.1em;
+}
+[data-theme="dark"] .error-msg { color: #ff8a80; }
+
+.info-msg {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  margin-top: 3px;
+  display: block;
+}
+
+fieldset {
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+legend {
+  font-weight: 600;
+  color: var(--walnut);
+  padding: 0 0.5rem;
+}
+
+.radio-option,
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────────────── */
+.btn-primary {
+  background-color: var(--accent);
+  color: #2C2C2C;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-primary:hover {
+  background-color: var(--walnut);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ─── Tables ────────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+thead { background-color: var(--header-bg); color: var(--header-text); }
+th, td { padding: 1rem; text-align: left; }
+td { border-bottom: 1px solid var(--border); color: var(--text-primary); }
+tbody tr:nth-child(even) { background-color: var(--bg-accent); }
+tbody tr:hover { background-color: #e8e8c8; }
+[data-theme="dark"] tbody tr:hover { background-color: #444; }
+
+/* ─── Gallery ───────────────────────────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.gallery-item {
+  background-color: var(--bg-accent);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.4);
+}
+.gallery-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
+}
+.image-caption {
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ─── Game highlights ───────────────────────────────────────────────────── */
+.game-highlight {
+  background-color: var(--bg-accent);
+  padding: 1.5rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.game-highlight h3 { color: var(--walnut); margin-bottom: 0.3rem; }
+.game-date { color: var(--accent); font-style: italic; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+/* ─── Diagrams ──────────────────────────────────────────────────────────── */
+.diagrams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.diagram-item {
+  text-align: center;
+  background-color: var(--bg-secondary);
+  padding: 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.diagram-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+.diagram-item:hover { transform: scale(1.04); }
+.diagram-caption { font-weight: 600; color: var(--walnut); }
+
+/* ─── Blockquote ────────────────────────────────────────────────────────── */
+.chess-quote {
+  background-color: var(--bg-accent);
+  border-left: 5px solid var(--accent);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+.chess-quote p { font-style: italic; font-size: 1.2rem; margin-bottom: 0.5rem; }
+.chess-quote cite { display: block; text-align: right; color: var(--walnut); font-weight: 600; }
+
+/* ─── Chess board (mini game) ───────────────────────────────────────────── */
+.chessboard-wrapper { display: flex; flex-direction: column; align-items: center; }
+.chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 48px);
+  grid-template-rows: repeat(8, 48px);
+  border: 3px solid #333;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+.chess-square {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  font-size: 30px;
+  user-select: none;
+}
+.chess-square.light  { background-color: #f0d9b5; }
+.chess-square.dark   { background-color: #b58863; }
+.chess-square.selected   { background-color: #7fc97f; }
+.chess-square.highlight  { background-color: #aed6f1; }
+.chess-piece-white { color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.7); }
+.chess-piece-black { color: #111111; text-shadow: 0 1px 2px rgba(255,255,255,0.2); }
+.move-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.6);
+}
+.board-controls {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.turn-indicator { font-weight: 600; color: var(--text-primary); }
+.chess-instructions { font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px; }
+
+/* ─── Splash / Loading screen ───────────────────────────────────────────── */
+.splash-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+  color: white;
+  text-align: center;
+}
+.splash-chess-icon { font-size: 90px; animation: float 3s ease-in-out infinite; }
+.splash-screen h1 { font-size: 2.5rem; margin: 1rem 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.spinner {
+  width: 70px; height: 70px;
+  border: 8px solid rgba(255,255,255,0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 1.5rem auto;
+}
+.loading-text { font-size: 1.2rem; color: rgba(255,255,255,0.85); }
+
+/* ─── Success screen ────────────────────────────────────────────────────── */
+.success-screen {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.success-icon { font-size: 60px; margin-bottom: 1rem; }
+.success-screen h2 { color: var(--accent); margin-bottom: 1rem; }
+
+/* ─── Map ───────────────────────────────────────────────────────────────── */
+.map-container { border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.map-caption { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+/* ─── Animations ────────────────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-20px); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .main-content { padding: 1.5rem; margin: 1rem; }
+  .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .diagrams-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .site-header { padding: 1rem; }
+  .navbar ul { flex-direction: column; gap: 0.4rem; }
+  .main-content { padding: 1rem; margin: 0.5rem; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item img { height: 220px; }
+  .diagram-item img { height: 150px; }
+  .btn-primary { width: 100%; }
+}
