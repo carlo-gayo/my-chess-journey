@@ -1,8 +1,8 @@
-// backend/config/db.js
-// Connects to MongoDB using MONGO_URI from .env.
-// Called once at the top of server.js.
-
 const mongoose = require('mongoose');
+const dns = require('dns');
+
+dns.setDefaultResultOrder('ipv4first');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const connectDB = async () => {
   try {
@@ -10,7 +10,7 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error('Database connection error:', error.message);
-    process.exit(1); // Stop server if DB fails
+    process.exit(1);
   }
 };
 
